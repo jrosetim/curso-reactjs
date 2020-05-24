@@ -2,7 +2,9 @@ import React from 'react'
 import Button from './button'
 
 const ButtonSearch = () => (
-    <Button>Search</Button>
+    <Button hanldeClick = { () => alert('Search Button')}>
+        Search
+    </Button>
 )
 
 export default ButtonSearch
