@@ -1,31 +1,48 @@
 import React, {Component} from 'react'
-import Quadrado from './quadrado'
-import BotaoPadrao from './botaoPadrao'
-import Button from './button';
+import AppContent from './components/app-content'
+import ajax from '@fdaciuk/ajax'
 
 class App extends Component {
   constructor (){
-    super();
-
-    this.state ={
-      color: 'gray'
+    super()
+    this.state = {
+      userInfo: null,
+      repos: [],
+      starred: []
     }
   }
 
-  render() {
-    return (
-      <div className='container' >
-        <Quadrado  color={ this.state.color }/>
+  handleSearch (e) {
+    const value = e.target.value
+    const keyCode = e.which || e.keyCode
+    const ENTER = 13
 
-        { ['red', 'blue', 'black', 'green'].map( (color, index) => (
-          <Button key={index} hanldeClick= { () => this.setState({color} )}  >
-            {color}
-          </Button>
-        )) }
-      </div>
-    )
+    if (keyCode === ENTER){
+      ajax().get(`https://api.github.com/users/${value}`)
+      .then((result) =>{
+        //console.log(result);
+        this.setState({
+          userInfo: {
+            username: result.name,
+            photo: result.avatar_url,
+            login: result.login,
+            repos: result.public_repos,
+            followers: result.followers,
+            following: result.following
+          }
+        })
+      })
+    }
   }
 
+  render(){
+    return <AppContent
+      userinfo={this.state.userInfo}
+      repos={this.state.repos}
+      starred={this.state.starred}
+      handleSearch={ (e) => this.handleSearch(e) }
+    />
+  }
 }
 
 export default App

@@ -1,0 +1,11 @@
+componentWillMount => componente vai ser montado(fazer algo antes do componente ser montado)
+componentDidMount => componente acabou de ser montado(componente monotou, vai executar esse metodo)
+componentWillUnmount => componete vai ser desmontado(componente vai ser desmontado ou removido da tela)
+
+
+componentWillReceicePorps(nextProps) (componente vai receber novas propriedades e vc consegue comparar as atuais
+                                      com as novas que serão recebidas)
+shouldComponentUpdate(nextProps, nextState) => bool ( retorna se o componente deve ou não ser atualizado )
+componentWillUpdate(nextProps, nextState) =(momento antes da atualização do componente)
+componentDidUpdate(prevProps, prevState) (acabou de ser atualizado, ja esta com as propriedades novas mas
+                                          ainda tem as propriedades anteriores, caso queira fazer alguma comparação)
