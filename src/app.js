@@ -35,13 +35,13 @@ class App extends Component {
     }
   }
 
-  handlerRepos (e) {
+  handlerRepos (type) {
     const user = this.state.userInfo.login
-    ajax().get(`https://api.github.com/users/${user}/repos`)
+    ajax().get(`https://api.github.com/users/${user}/${type}`)
     .then((result) => {
       console.log(result);
       this.setState({
-        repos: result
+        [type]: result
       })
     }
     )
@@ -53,7 +53,8 @@ class App extends Component {
       repos={this.state.repos}
       starred={this.state.starred}
       handleSearch={ (e) => this.handleSearch(e) }
-      handlerRepos={( e) => this.handlerRepos(e)}
+      handlerRepos={ () => this.handlerRepos('repos')}
+      handlerStarred={() => this.handlerRepos('starred') }
     />
   }
 }
