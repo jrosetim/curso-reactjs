@@ -1,16 +1,15 @@
 import React from 'react'
 
-const Square = ({color}) => (
+const Quadrado = ({color}) => (
     <div style={{
         backgroundColor: color,
         height: '100px',
         width: '100px'
     }} />
-    
 )
 
-Square.defaultProps = {
-    color: 'purple'
+Quadrado.defaultProps = {
+    color: 'gray'
 }
 
-export default Square
+export default Quadrado

@@ -1,65 +1,31 @@
 import React, {Component} from 'react'
-import Square from './square'
+import Quadrado from './quadrado'
+import BotaoPadrao from './botaoPadrao'
 import Button from './button';
-// import ButtonLike from './buttonLike'
-// import ButtonSearch  from './buttonSearch'
 
-class App extends Component{
-    constructor() {
-        super();
+class App extends Component {
+  constructor (){
+    super();
 
-        this.state = {
-            color: 'purple'
-        }
+    this.state ={
+      color: 'gray'
     }
+  }
 
-    render(){
-        return( 
-            <div>
-                <Square color={ this.state.color } />
+  render() {
+    return (
+      <div className='container' >
+        <Quadrado  color={ this.state.color }/>
 
-                {['red', 'green', 'blue'].map((color) => (
-                    <Button
-                        key={color}
-                        hanldeClick={ () => this.setState( {color} ) }>
-                        { color }
-                    </Button>    
-                ))}
-            </div>        
-        )
-    }
+        { ['red', 'blue', 'black', 'green'].map( (color, index) => (
+          <Button key={index} hanldeClick= { () => this.setState({color} )}  >
+            {color}
+          </Button>
+        )) }
+      </div>
+    )
+  }
+
 }
-
-
-// class App extends Component{
-//     render(){
-//         return( 
-//             <div className='container'>
-//                 <ButtonLike />
-//                 <ButtonSearch />
-//             </div>        
-//         )
-//     }
-// }
-
-
-// class App extends Component{
-//     render(){
-//         return( 
-//             <div onClick={ (e) => alert('Clicou')}>
-//                 <Square color='purple' />
-//             </div>        
-//         )
-//     }
-// }
-
-
-// const App = React.createClass({
-//     render: function() {
-//         return <div>
-//             <Title name='Julio' lastName='Rosetim!' />
-//         </div>
-//     }
-// })
 
 export default App
