@@ -35,12 +35,25 @@ class App extends Component {
     }
   }
 
+  handlerRepos (e) {
+    const user = this.state.userInfo.login
+    ajax().get(`https://api.github.com/users/${user}/repos`)
+    .then((result) => {
+      console.log(result);
+      this.setState({
+        repos: result
+      })
+    }
+    )
+  }
+
   render(){
     return <AppContent
       userinfo={this.state.userInfo}
       repos={this.state.repos}
       starred={this.state.starred}
       handleSearch={ (e) => this.handleSearch(e) }
+      handlerRepos={( e) => this.handlerRepos(e)}
     />
   }
 }
