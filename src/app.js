@@ -18,6 +18,11 @@ class App extends Component {
     return `https://api.github.com/users/${username}${internalType}`
   }
 
+  showLoading(){
+    this.setState({isFetching: !this.state.isFetching})
+    return this.state.isFetching
+  }
+
   handleSearch (e) {
     const value = e.target.value
     const keyCode = e.which || e.keyCode
@@ -25,7 +30,7 @@ class App extends Component {
     const target = e.target
 
     if (keyCode === ENTER){
-      this.setState({isFetching: true})
+      this.showLoading()
       ajax().get(this.getGitHubApiUrl(value))
       .then((result) =>{
         this.setState({
@@ -41,7 +46,7 @@ class App extends Component {
           starred: []
         })
       })
-      .always( () => this.setState({isFetching: false }))
+      .always( () => this.showLoading())
     }
   }
 
